@@ -3,6 +3,9 @@ import { useState } from 'react';
 import cx from 'clsx';
 import { ScrollArea, Table } from '@mantine/core';
 import classes from './TableScrollArea.module.css';
+import { IoAddCircleSharp } from "react-icons/io5";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 const data = [
     {
         name: 'Athena Weissnat',
@@ -163,17 +166,31 @@ function userTable() {
             <Table.Td>{row.name}</Table.Td>
             <Table.Td>{row.email}</Table.Td>
             <Table.Td>{row.company}</Table.Td>
+            <Table.Td>
+                <div className='flex'>
+                    <FaEdit size={23} className='hover:cursor-pointer text-yellow-700' />
+                    <MdDelete size={23} className='hover:cursor-pointer text-red-500' />
+                </div>
+            </Table.Td>
         </Table.Tr>
     ));
     return (
-        <div>
-            <ScrollArea h={300} onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
-                <Table miw={700}>
+        <div className='flex justify-center items-center flex-col'>
+            <div className='w-[80vw] flex justify-between px-6 bg-red-500 py-3'>
+                <h3 className='font-bold text-xl text-white'>Manage Employees</h3>
+                <button className="bg-green-400 text-white hover:bg-gray-400 font-bold py-2 px-4 rounded inline-flex items-center">
+                    <IoAddCircleSharp className='text-white' />
+                    <span>Add New Employee</span>
+                </button>
+            </div>
+            <ScrollArea h={300} onScrollPositionChange={({ y }) => setScrolled(y !== 0)} className='w-[80vw]'>
+                <Table miw={600}>
                     <Table.Thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>
                         <Table.Tr>
                             <Table.Th>Name</Table.Th>
                             <Table.Th>Email</Table.Th>
                             <Table.Th>Company</Table.Th>
+                            <Table.Th>Actions</Table.Th>
                         </Table.Tr>
                     </Table.Thead>
                     <Table.Tbody>{rows}</Table.Tbody>

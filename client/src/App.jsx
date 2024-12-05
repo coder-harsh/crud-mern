@@ -2,13 +2,12 @@ import './App.css'
 import '@mantine/core/styles.css';
 import PopUp from './components/PopUp';
 import UserTable from './components/Table/UserTable';
-import AddUser from './components/Table/AddUser';
+import AddUser from './components/AddUser';
 function App() {
 
   return (
     <>
-      <div>
-        <h1 className='text-red-500'>Hi</h1>
+      <div className='flex flex-col justify-center items-center'>
         <PopUp />
         <UserTable />
         <AddUser />

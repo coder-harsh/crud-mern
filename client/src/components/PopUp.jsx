@@ -2,6 +2,7 @@ import React from 'react'
 import { useDisclosure } from '@mantine/hooks';
 import { Modal } from '@mantine/core';
 import { IoAddCircleSharp } from "react-icons/io5";
+
 function PopUp({ comp }) {
     const [opened, { open, close }] = useDisclosure(false);
     return (

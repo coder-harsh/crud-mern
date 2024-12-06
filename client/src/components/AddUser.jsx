@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 function AddUser() {
     const [formData, setFormData] = useState({
         name: "",
@@ -7,16 +7,26 @@ function AddUser() {
         email: "",
         phone: "",
     });
-
+    const resetData = () => {
+        alert("Data reset");
+    }
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form submitted:", formData);
         // Add your form submission logic here
+        try {
+            const addUser = await axios.post('http://localhost:4000/api/create', formData);
+            const response = addUser.data;
+            console.log(response)
+            resetData();
+        } catch (error) {
+            console.log(error)
+        }
     };
 
     return (

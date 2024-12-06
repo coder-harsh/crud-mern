@@ -3,9 +3,12 @@ import { useState } from 'react';
 import cx from 'clsx';
 import { ScrollArea, Table } from '@mantine/core';
 import classes from './TableScrollArea.module.css';
-import { IoAddCircleSharp } from "react-icons/io5";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import PopUp from '../PopUp';
+import AddUser from '../AddUser';
+import { UpdatePop } from '../UpdateUser';
+import Alert from "../Alert"
 const data = [
     {
         name: 'Athena Weissnat',
@@ -167,23 +170,20 @@ function userTable() {
             <Table.Td>{row.email}</Table.Td>
             <Table.Td>{row.company}</Table.Td>
             <Table.Td>
-                <div className='flex'>
-                    <FaEdit size={23} className='hover:cursor-pointer text-yellow-700' />
-                    <MdDelete size={23} className='hover:cursor-pointer text-red-500' />
+                <div className='flex items-center'>
+                    <UpdatePop />
+                    <Alert />
                 </div>
             </Table.Td>
         </Table.Tr>
     ));
     return (
-        <div className='flex justify-center items-center flex-col'>
+        <div className='flex justify-center items-center flex-col mt-6'>
             <div className='w-[80vw] flex justify-between px-6 bg-red-500 py-3'>
                 <h3 className='font-bold text-xl text-white'>Manage Employees</h3>
-                <button className="bg-green-400 text-white hover:bg-gray-400 font-bold py-2 px-4 rounded inline-flex items-center">
-                    <IoAddCircleSharp className='text-white' />
-                    <span>Add New Employee</span>
-                </button>
+                <PopUp comp={<AddUser />} />
             </div>
-            <ScrollArea h={300} onScrollPositionChange={({ y }) => setScrolled(y !== 0)} className='w-[80vw]'>
+            <ScrollArea h={400} onScrollPositionChange={({ y }) => setScrolled(y !== 0)} className='w-[80vw]'>
                 <Table miw={600}>
                     <Table.Thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>
                         <Table.Tr>

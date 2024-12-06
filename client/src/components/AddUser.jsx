@@ -20,7 +20,7 @@ function AddUser() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="flex items-center justify-center bg-gray-100">
             <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
                 <h2 className="text-2xl font-bold mb-4 text-gray-800">Contact Us</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -36,7 +36,7 @@ function AddUser() {
                             value={formData.name}
                             onChange={handleChange}
                             required
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            className="mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                         />
                     </div>
 
@@ -52,7 +52,7 @@ function AddUser() {
                             value={formData.fatherName}
                             onChange={handleChange}
                             required
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            className="mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                         />
                     </div>
 
@@ -68,7 +68,7 @@ function AddUser() {
                             value={formData.email}
                             onChange={handleChange}
                             required
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            className="mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                         />
                     </div>
 
@@ -84,7 +84,7 @@ function AddUser() {
                             value={formData.phone}
                             onChange={handleChange}
                             required
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            className="mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                         />
                     </div>
 

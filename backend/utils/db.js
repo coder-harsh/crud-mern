@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 const dbCon = async () => {
     try {
-        await mongoose.connect(process.env.DB_URL)
+        await mongoose.connect(`${process.env.DB_URL}/crud-mern`);
         console.log('mongodb is connected');
     } catch (error) {
         console.log(error)

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import toast, { Toaster } from 'react-hot-toast';
 function AddUser() {
     const [formData, setFormData] = useState({
         name: "",
@@ -8,7 +9,12 @@ function AddUser() {
         phone: "",
     });
     const resetData = () => {
-        alert("Data reset");
+        setFormData({
+            name: "",
+            fatherName: "",
+            email: "",
+            phone: "",
+        })
     }
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -19,16 +25,20 @@ function AddUser() {
         e.preventDefault();
         console.log("Form submitted:", formData);
         // Add your form submission logic here
-        try {
-            const addUser = await axios.post('http://localhost:4000/api/create', formData);
-            const response = addUser.data;
-            console.log(response)
-            resetData();
-        } catch (error) {
-            console.log(error)
-        }
+        const backend_url = import.meta.env.VITE_BACKEND_URL
+        toast.promise(
+            axios.post(backend_url + '/api/create', formData)
+                .then((response) => {
+                    console.log("Response:", response.data);
+                    resetData();
+                }),
+            {
+                loading: 'Submitting...',
+                success: 'Form submitted successfully!',
+                error: 'Failed to submit form. Please try again.',
+            }
+        );
     };
-
     return (
         <div className="flex items-center justify-center bg-gray-100">
             <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
@@ -109,6 +119,7 @@ function AddUser() {
                     </div>
                 </form>
             </div>
+            <Toaster />
         </div>
     );
 }
